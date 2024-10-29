@@ -1,0 +1,14 @@
+<div class="flex flex-column justify-content-center align-content-center min-h-screen">
+    <div class="flex align-items-center justify-content-center gap-5">
+        <p-inputGroup class="w-30rem">
+            <input type="text" pInputText placeholder="Company Name or Number" [(ngModel)]="term" />
+            <button type="button" pButton icon="pi pi-search" class="p-button-secondary"
+                (click)="handleClick()"></button>
+        </p-inputGroup>
+        <p-checkbox [(ngModel)]="superuser" [binary]="true" inputId="superuser" label="Superuser" />
+    </div>
+    <div class="flex align-items-center justify-content-center">
+        <p-messages [(value)]="messages" [enableService]="false" [closable]="false" *ngIf="messages.length>0" />
+    </div>
+
+</div>

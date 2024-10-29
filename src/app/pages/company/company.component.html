@@ -1,0 +1,21 @@
+<h1>{{data.title}}</h1>
+<label>Company Number </label>
+<span class="font-bold">{{data.company_number}}</span>
+
+<ng-container *ngIf="showOfficers; then officersList; else companyDetail">
+</ng-container>
+
+<ng-template #companyDetail>
+    <!-- <div *ngIf="display.size >0"> -->
+    <div class="flex flex-column pt-3" *ngFor="let item of display;">
+        <label>{{item.label}}</label>
+        <span class="font-bold">{{item.value}}</span>
+    </div>
+    <!-- </div> -->
+
+    <p-button label="List Officers" [link]="true" (onClick)="handleClick()" class="pt-3" />
+</ng-template>
+<ng-template #officersList>
+    <app-officer [officersData]="officers"></app-officer>
+    <p-button label="Return to company detail" [link]="true" (onClick)="handleClick()" class="pt-3" />
+</ng-template>

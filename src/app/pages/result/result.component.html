@@ -1,0 +1,26 @@
+<p-blockUI [blocked]="loading">
+    <i class="loading pi pi-spin pi-cog" *ngIf="loading"></i>
+</p-blockUI>
+<h1>Search Result</h1>
+
+
+<div class="card">
+    <p-dataView #dv [value]="companies" [rows]="5" [paginator]="true">
+        <ng-template pTemplate="list" let-companies>
+            <div class="grid grid-nogutter">
+                <div class="col-12" *ngFor="let company of companies; let first = first" class="col-12">
+                    <div class="flex flex-row md:flex-column justify-content-between align-items-start gap-2"
+                        [ngClass]="{ 'border-top-1 surface-border': !first }">
+                        <!-- Disable the link button then it is not superuser -->
+                        <p-button [label]="company.title" [link]="true" (onClick)="handleClick(company)"
+                            [disabled]='!superuser && company.company_type.toLowerCase() ==="ltd"' />
+                        <div class="px-4">
+                            <span class="font-medium text-secondary text-sm">{{company.description}}</span>
+                            <div class="text-lg font-medium text-900 mt-2">{{company.address_snippet}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>
+</div>
